@@ -1,9 +1,10 @@
 from flask_restful import Resource 
-from ..models  import db, User, UserSchema
+from ..models  import db, User, UserSchema, Task, TaskSchema
 from flask import request
 from flask_jwt_extended import jwt_required, create_access_token
 
 user_schema = UserSchema()
+task_schema = TaskSchema()
 
 
 class ViewSignUpUser(Resource):
@@ -31,6 +32,11 @@ class ViewLogInUser(Resource):
         else:
             access_token = create_access_token(identity = user.id)
             return {"mensaje":"Inicio de sesión exitoso", "token": access_token}
+
+class ViewTasks(Resource):
+    def get(self):
+        return [task_schema.dump(task) for task in Task.query.all()]
+
 
 
         

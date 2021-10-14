@@ -17,7 +17,19 @@ class User(db.Model):
     def __repr__(self):
         return "{} - {}".format(self.username, self.password)
 
+
+class Task(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(200))
+
 class UserSchema(SQLAlchemyAutoSchema):
+    class Meta: 
+        model = User
+        include_relationships = True 
+        load_instance = True 
+
+
+class TaskSchema(SQLAlchemyAutoSchema):
     class Meta: 
         model = User
         include_relationships = True 

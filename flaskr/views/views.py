@@ -21,4 +21,16 @@ class ViewSignUpUser(Resource):
             return {"mensaje":"usuario creado exitosamente", "token": access_token}
 
 
+
+class ViewLogInUser(Resource):
+    def post(self):
+        user = User.query.filter(User.username == request.json["username"], User.password == request.json["password"]).first()
+        db.session.commit()
+        if user is None:
+            return "El vendedor no existe", 404
+        else:
+            access_token = create_access_token(identity = user.id)
+            return {"mensaje":"Inicio de sesión exitoso", "token": access_token}
+
+
         

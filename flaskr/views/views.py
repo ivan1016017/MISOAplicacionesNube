@@ -85,12 +85,13 @@ class ViewFile(Resource):
     @jwt_required()
     def get(self, file_name):
         user = User.query.get_or_404(get_jwt_identity())
-        file = File.query.filter(File.file_name == str(file_name))
+        
+        file = File.query.filter(File.file_name == file_name).first()
 
-        # if(file.user_id == user.id):
-        return file_schema.dump(file)
-        # else:
-        #     return '', 401
+        if(file.user_id == user.id):
+            return file_schema.dump(file)
+        else:
+            return '', 401
 
 
 

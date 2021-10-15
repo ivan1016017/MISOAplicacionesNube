@@ -35,7 +35,7 @@ jwt = JWTManager(app)
 with app.app_context():
     user_schema = UserSchema()
     user_one = User(username="user1",password = "password_user1", email='email_user1')
-    user_two = User(username="user2",password = "password_user1", email='email_user2')
+    user_two = User(username="user2",password = "password_user2", email='email_user2')
     task_one = Task(file_name= "fileNameOne", new_format = 'xml')
     file_one = File(file_name = "file_name_one", format_name = "file_format_name" )
     user_two.tasks.append(task_one)

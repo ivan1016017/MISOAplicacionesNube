@@ -13,6 +13,7 @@ class User(db.Model):
     password = db.Column(db.String(200))
     email = db.Column(db.String(200))
     tasks = db.relationship('Task', cascade='all, delete, delete-orphan')
+    files = db.relationship('File', cascade='all, delete, delete-orphan')
     
 
     def __repr__(self):
@@ -22,7 +23,13 @@ class User(db.Model):
 class Task(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     file_name = db.Column(db.String(200))
-    new_format = db.Column(db.String(10))
+    new_format = db.Column(db.String(100))
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+
+class File(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    file_name = db.Column(db.String(200))
+    format_name = db.Column(db.String(100))
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 
 
@@ -35,7 +42,13 @@ class UserSchema(SQLAlchemyAutoSchema):
 
 class TaskSchema(SQLAlchemyAutoSchema):
     class Meta: 
-        model = User
+        model = Task
+        include_relationships = True 
+        load_instance = True 
+
+class FileSchema(SQLAlchemyAutoSchema):
+    class Meta: 
+        model = File
         include_relationships = True 
         load_instance = True 
 

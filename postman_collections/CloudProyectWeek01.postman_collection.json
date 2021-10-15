@@ -1,0 +1,223 @@
+{
+	"info": {
+		"_postman_id": "16f8ab0c-fca3-4249-a747-b63d33b874d7",
+		"name": "CloudProyectWeek01",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Signup",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\":\"user_a\",\r\n    \"password1\": \"user_a_password1\",\r\n    \"password2\":\"user_a_password1\",\r\n    \"email\": \"user_a_email\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:5000/signup",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"signup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\":\"user_a\",\r\n    \"password\": \"user_a_password1\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:5000/login",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get tasks",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:5000/tasks",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"tasks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "crear nueva tarea",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"file_name\": \"new file\",\r\n    \"new_format\": \"new format\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:5000/tasks",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"tasks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get taks by id",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTYzNDI1NzAwOCwianRpIjoiNzNiZDYxMGQtOWJhNS00NTBhLWFmNjQtOGQ1OGFiN2RkMWI0IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6MTYsIm5iZiI6MTYzNDI1NzAwOCwiZXhwIjoxNjM0MjU3OTA4fQ.4oEAww6wz_3p2g_PZFKffpFcTcrbvvva4ZHf5_SbzV8",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:5000/tasks/9",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"tasks",
+						"9"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update task by id",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTYzNDI1ODAzOCwianRpIjoiM2QxNGI3OGEtMmYwOC00OGEzLTg0OTctMTAwMDgzMjc1MzM5IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6MjYsIm5iZiI6MTYzNDI1ODAzOCwiZXhwIjoxNjM0MjU4OTM4fQ.KDTrTeVqeY-x9Qn5CccSQg8nY73Y0AnYvojuflWFWv0",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"file_name\": \"updated file name\",\r\n    \"new_format\": \"updated new format\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:5000/tasks/15",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"tasks",
+						"15"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete task",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:5000/tasks/13",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"tasks",
+						"13"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get file by name",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTYzNDI2MDEzOCwianRpIjoiYTk0NjU1NzAtN2E2ZS00YTFmLTkyOTgtNWQyYmZlZDFhMTc5IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6MiwibmJmIjoxNjM0MjYwMTM4LCJleHAiOjE2MzQyNjEwMzh9.lLT1xSKpGiuV0kuXbohjR-bW8wn_uuy9Ap18eyFMzko",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:5000/files/file_name_one",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"files",
+						"file_name_one"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

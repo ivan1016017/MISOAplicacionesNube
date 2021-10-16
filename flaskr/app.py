@@ -1,4 +1,4 @@
-from flaskr import create_app
+from . import create_app
 from .models import db, User
 from .models import UserSchema
 from flask_restful import Api 

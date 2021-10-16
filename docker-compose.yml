@@ -1,0 +1,60 @@
+version: "3.8"
+services:
+  base:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: flask run -h 0.0.0.0 -p 5000
+    env_file:
+      - common.env
+      - secrets.env
+    volumes:
+      - ./:/backend/
+    working_dir: /backend/flaskr
+    ports:
+      - "5000:5000"
+    depends_on:
+      - redis
+    networks:
+      - uniandes
+    
+  worker:
+    build:
+      context: .
+      dockerfile: Dockerfile    
+    command: celery -A flaskr.tasks worker -l INFO
+    env_file:
+      - common.env
+      - secrets.env
+    volumes:
+      - ./:/backend/
+    working_dir: /backend/
+    depends_on:
+      - base
+      - redis
+    networks:
+      - uniandes
+  
+  redis:
+    image: bitnami/redis:latest
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
+    networks:
+      - uniandes
+  
+  db:
+    image: postgres:13-alpine
+    volumes:
+      - ./pg-data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    env_file:
+      - common.env
+      - secrets.env
+    networks:
+      - uniandes
+
+volumes:
+  pg-data:
+networks:
+  uniandes:
